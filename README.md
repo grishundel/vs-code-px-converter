@@ -1,5 +1,42 @@
 # PX Converter
 
+VS Code / Cursor extension: convert `px` ↔ `vw`/`vh` with a configurable viewport.
+
+## Commands and shortcuts
+
+| Action | Command | Default keybinding |
+|--------|---------|--------------------|
+| px → vw/vh on current line | `PX Converter: Convert px to vw/vh on current line` | **Alt+S** |
+| px → vw/vh in entire file | `PX Converter: Convert px to vw/vh in entire file` | **Alt+D** |
+| vw/vh → px on current line | `PX Converter: Convert vw/vh to px on current line` | **Ctrl+Alt+S** |
+| vw/vh → px in entire file | `PX Converter: Convert vw/vh to px in entire file` | **Ctrl+Alt+D** |
+
+## Settings
+
+- **pxConverter.targetUnit** — Convert px to: `vw` or `vh` (default: `vw`).
+- **pxConverter.viewportWidth** — Viewport width in px (default: `1920`).
+- **pxConverter.viewportHeight** — Viewport height in px (default: `1080`).
+
+Keybindings can be changed in VS Code/Cursor keyboard settings.
+
+## Install from folder
+
+1. Build the extension: `npm run compile`
+2. In VS Code/Cursor: **Extensions** → **...** → **Install from VSIX...** or run from folder (F5 — Run Extension).
+
+## Local development
+
+```bash
+npm install
+npm run compile
+```
+
+Then press F5 in VS Code to open a new window with the extension installed.
+
+---
+
+# PX Converter (Русский)
+
 Расширение для VS Code / Cursor: конвертация `px` ↔ `vw`/`vh` с настраиваемым viewport.
 
 ## Команды и горячие клавиши
