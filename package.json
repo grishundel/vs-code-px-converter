@@ -2,7 +2,7 @@
   "name": "px-converter",
   "displayName": "PX Converter To VW/VH",
   "description": "Convert px to vw/vh and vice versa with configurable viewport. For example, if you have a design in px and you want to convert it to vw/vh, you can use this extension to convert it to vw/vh.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.74.0"
