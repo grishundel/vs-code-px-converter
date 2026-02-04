@@ -4,6 +4,10 @@
   "description": "Convert px to vw/vh and vice versa with configurable viewport. For example, if you have a design in px and you want to convert it to vw/vh, you can use this extension to convert it to vw/vh.",
   "version": "0.1.1",
   "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Grishundel/vs-code-px-converter"
+  },
   "engines": {
     "vscode": "^1.74.0"
   },
