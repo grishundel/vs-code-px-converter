@@ -10,43 +10,44 @@ function getConfig() {
     targetUnit: config.get<'vw' | 'vh'>('targetUnit', 'vw'),
     viewportWidth: config.get<number>('viewportWidth', 1920),
     viewportHeight: config.get<number>('viewportHeight', 1080),
+    decimalPlaces: config.get<number>('decimalPlaces', 2),
   };
 }
 
-function roundValue(value: number, decimals = 4): string {
+function roundValue(value: number, decimals: number): string {
   const rounded = Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
   return rounded % 1 === 0 ? rounded.toString() : rounded.toFixed(decimals).replace(/\.?0+$/, '');
 }
 
-function pxToVw(px: number, viewportWidth: number): string {
-  return roundValue((px / viewportWidth) * 100) + 'vw';
+function pxToVw(px: number, viewportWidth: number, decimals: number): string {
+  return roundValue((px / viewportWidth) * 100, decimals) + 'vw';
 }
 
-function pxToVh(px: number, viewportHeight: number): string {
-  return roundValue((px / viewportHeight) * 100) + 'vh';
+function pxToVh(px: number, viewportHeight: number, decimals: number): string {
+  return roundValue((px / viewportHeight) * 100, decimals) + 'vh';
 }
 
-function vwToPx(vw: number, viewportWidth: number): string {
-  return roundValue((vw / 100) * viewportWidth) + 'px';
+function vwToPx(vw: number, viewportWidth: number, decimals: number): string {
+  return roundValue((vw / 100) * viewportWidth, decimals) + 'px';
 }
 
-function vhToPx(vh: number, viewportHeight: number): string {
-  return roundValue((vh / 100) * viewportHeight) + 'px';
+function vhToPx(vh: number, viewportHeight: number, decimals: number): string {
+  return roundValue((vh / 100) * viewportHeight, decimals) + 'px';
 }
 
 function convertLinePxToVwVh(text: string, config: ReturnType<typeof getConfig>): string {
-  const { targetUnit, viewportWidth, viewportHeight } = config;
+  const { targetUnit, viewportWidth, viewportHeight, decimalPlaces } = config;
   return text.replace(PX_REGEX, (_, num) => {
     const px = parseFloat(num);
-    return targetUnit === 'vw' ? pxToVw(px, viewportWidth) : pxToVh(px, viewportHeight);
+    return targetUnit === 'vw' ? pxToVw(px, viewportWidth, decimalPlaces) : pxToVh(px, viewportHeight, decimalPlaces);
   });
 }
 
 function convertLineVwVhToPx(text: string, config: ReturnType<typeof getConfig>): string {
-  const { viewportWidth, viewportHeight } = config;
+  const { viewportWidth, viewportHeight, decimalPlaces } = config;
   let result = text;
-  result = result.replace(VW_REGEX, (_, num) => vwToPx(parseFloat(num), viewportWidth));
-  result = result.replace(VH_REGEX, (_, num) => vhToPx(parseFloat(num), viewportHeight));
+  result = result.replace(VW_REGEX, (_, num) => vwToPx(parseFloat(num), viewportWidth, decimalPlaces));
+  result = result.replace(VH_REGEX, (_, num) => vhToPx(parseFloat(num), viewportHeight, decimalPlaces));
   return result;
 }
 
