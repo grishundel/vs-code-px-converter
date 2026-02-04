@@ -1,0 +1,96 @@
+{
+  "name": "px-converter",
+  "displayName": "PX Converter",
+  "description": "Convert px to vw/vh and vice versa with configurable viewport",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other",
+    "Formatters"
+  ],
+  "activationEvents": [
+    "onCommand:pxConverter.convertLinePxToVw",
+    "onCommand:pxConverter.convertFilePxToVw",
+    "onCommand:pxConverter.convertLineVwToPx",
+    "onCommand:pxConverter.convertFileVwToPx"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "pxConverter.convertLinePxToVw",
+        "title": "PX Converter: Convert px to vw/vh on current line"
+      },
+      {
+        "command": "pxConverter.convertFilePxToVw",
+        "title": "PX Converter: Convert px to vw/vh in entire file"
+      },
+      {
+        "command": "pxConverter.convertLineVwToPx",
+        "title": "PX Converter: Convert vw/vh to px on current line"
+      },
+      {
+        "command": "pxConverter.convertFileVwToPx",
+        "title": "PX Converter: Convert vw/vh to px in entire file"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "pxConverter.convertLinePxToVw",
+        "key": "alt+s",
+        "mac": "alt+s"
+      },
+      {
+        "command": "pxConverter.convertFilePxToVw",
+        "key": "alt+d",
+        "mac": "alt+d"
+      },
+      {
+        "command": "pxConverter.convertLineVwToPx",
+        "key": "ctrl+alt+s",
+        "mac": "ctrl+alt+s"
+      },
+      {
+        "command": "pxConverter.convertFileVwToPx",
+        "key": "ctrl+alt+d",
+        "mac": "ctrl+alt+d"
+      }
+    ],
+    "configuration": {
+      "title": "PX Converter",
+      "properties": {
+        "pxConverter.targetUnit": {
+          "type": "string",
+          "enum": ["vw", "vh"],
+          "default": "vw",
+          "description": "Convert px to: vw (viewport width) or vh (viewport height)"
+        },
+        "pxConverter.viewportWidth": {
+          "type": "number",
+          "default": 1920,
+          "minimum": 1,
+          "description": "Viewport width in px (for vw calculation)"
+        },
+        "pxConverter.viewportHeight": {
+          "type": "number",
+          "default": 1080,
+          "minimum": 1,
+          "description": "Viewport height in px (for vh calculation)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "18.x",
+    "typescript": "^5.0.0"
+  }
+}
